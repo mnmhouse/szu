@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" 
+    android:gravity="center"
+    android:padding="10dip"
+    android:background="@drawable/list_item_background">
+
+	<TextView
+		android:id="@+id/notice"
+		android:layout_width="fill_parent"
+		android:layout_height="30dip"
+		android:ellipsize="marquee"
+		android:focusable="true"
+		android:focusableInTouchMode="true"
+		android:gravity="center_vertical"
+		android:lines="1"
+		android:marqueeRepeatLimit="marquee_forever"
+		android:singleLine="true"
+		android:text="发现您有需要优化您的程序,点击立即进行优化.每日体验,保障您手机安全"
+		android:textSize="14sp" />
+
+</LinearLayout>
