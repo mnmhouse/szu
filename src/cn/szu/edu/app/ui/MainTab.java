@@ -5,7 +5,7 @@ import cn.szu.edu.app.fragment.MyInformationFragment;
 import cn.szu.edu.app.fragment.PictureListFragment;
 import cn.szu.edu.app.fragment.TopNewsFragment;
 import cn.szu.edu.app.fragment.TopicListFragment;
-import cn.szu.edu.app.viewpagerfragment.NewsViewPagerFragment;
+import cn.szu.edu.app.viewpagerfragment.CollegeNoticeViewPagerFragment;
 
 public enum MainTab {
 
@@ -19,7 +19,7 @@ public enum MainTab {
 			TopicListFragment.class),
 
 	NEWS(3, R.string.main_tab_name_explore, R.drawable.tab_icon_explore,
-			NewsViewPagerFragment.class),
+			CollegeNoticeViewPagerFragment.class),
 
 	ME(4, R.string.main_tab_name_my, R.drawable.tab_icon_me,
 			MyInformationFragment.class);

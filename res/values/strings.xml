@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name"></string>
+    <string name="app_name">校园助手</string>
     
     <string name="main_tab_name_news">综合</string>
     <string name="main_tab_name_tweet">动弹</string>

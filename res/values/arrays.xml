@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 
+    <string-array name="messages_viewpage_arrays">
+        <item>学院通知</item>
+        <item>私信</item>
+    </string-array>
     <string-array name="news_viewpage_arrays">
         <item>资讯</item>
         <item>热点</item>

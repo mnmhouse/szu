@@ -50,10 +50,7 @@ import com.networkbench.agent.impl.NBSAppAgent;
 
 @SuppressLint("InflateParams")
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class MainActivity extends ActionBarActivity implements
-        NavigationDrawerFragment.NavigationDrawerCallbacks,
-        OnTabChangeListener, BaseViewInterface, View.OnClickListener,
-        OnTouchListener {
+public class MainActivity extends ActionBarActivity implements  OnTabChangeListener, BaseViewInterface, View.OnClickListener, OnTouchListener {
 
     private DoubleClickExitHelper mDoubleClickExit;
 
@@ -204,7 +201,7 @@ public class MainActivity extends ActionBarActivity implements
 //            AppContext.setFristStart(false);
 //        }
 
-        checkUpdate();
+//        checkUpdate();
     }
 
     private void checkUpdate() {
@@ -275,15 +272,11 @@ public class MainActivity extends ActionBarActivity implements
         }
     }
 
-    @Override
-    public void onNavigationDrawerItemSelected(int position) {
-        // update the main content by replacing fragments
-    }
-
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setIcon(R.drawable.ic_drawer);
         actionBar.setTitle(mTitle);
     }
 
@@ -294,6 +287,7 @@ public class MainActivity extends ActionBarActivity implements
 //            restoreActionBar();
 //            return true;
 //        }
+        restoreActionBar();
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -345,8 +339,7 @@ public class MainActivity extends ActionBarActivity implements
 
     // 显示快速操作界面
     private void showQuickOption() {
-        final QuickOptionDialog dialog = new QuickOptionDialog(
-                MainActivity.this);
+        final QuickOptionDialog dialog = new QuickOptionDialog(MainActivity.this);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
