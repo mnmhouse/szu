@@ -42,6 +42,15 @@ public class OSChinaApi {
         ApiHttpClient.post(loginurl, params, handler);
     }
 
+    public static void getNoticeTopicList(String sign, String username,
+            AsyncHttpResponseHandler handler) {
+        RequestParams params = new RequestParams();
+        params.put("sign", "");
+        params.put("username", username);
+        params.put("pageSize", AppContext.PAGE_SIZE);
+        ApiHttpClient.client.get("http://localhost/szuapp/interface/getNoticeList.php", params, handler);
+    }
+    
     /**
      * 获取新闻列表
      * 
