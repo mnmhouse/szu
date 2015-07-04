@@ -3,6 +3,8 @@ package cn.szu.edu.app.fragment;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.Header;
 
@@ -12,7 +14,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -25,6 +26,7 @@ import cn.szu.edu.app.api.OperationResponseHandler;
 import cn.szu.edu.app.api.remote.OSChinaApi;
 import cn.szu.edu.app.base.BaseListFragment;
 import cn.szu.edu.app.bean.Constants;
+import cn.szu.edu.app.bean.NoticeBean;
 import cn.szu.edu.app.bean.Result;
 import cn.szu.edu.app.bean.ResultBean;
 import cn.szu.edu.app.bean.Tweet;
@@ -38,6 +40,10 @@ import cn.szu.edu.app.util.TDevice;
 import cn.szu.edu.app.util.UIHelper;
 import cn.szu.edu.app.util.XmlUtils;
 
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.networkbench.com.google.gson.Gson;
+import com.networkbench.com.google.gson.reflect.TypeToken;
+
 /**
  * @author kymjs (http://www.kymjs.com)
  */
@@ -47,6 +53,7 @@ public class TopNewsFragment extends BaseListFragment<Tweet> implements
     protected static final String TAG = TopNewsFragment.class.getSimpleName();
     private static final String CACHE_KEY_PREFIX = "tweetslist_";
     private TextView mNotice;
+    private List<NoticeBean> noticeList = new ArrayList<NoticeBean>();
     
     @Override
     protected int getLayoutId() {
@@ -166,6 +173,28 @@ public class TopNewsFragment extends BaseListFragment<Tweet> implements
             }
         }
         OSChinaApi.getTweetList(mCatalog, mCurrentPage, mHandler);
+        
+        OSChinaApi.getNoticeTopicList("", "", new AsyncHttpResponseHandler() {
+
+			@Override
+			public void onFailure(int arg0, Header[] arg1, byte[] arg2,
+					Throwable arg3) {
+				AppContext.showToastShort("获取通知失败！");
+			}
+
+			@Override
+			public void onSuccess(int statusCode, Header[] headers,byte[] responseBytes) {
+				Gson gson = new Gson();
+				String result = new String(responseBytes);
+				noticeList = gson.fromJson(result, new TypeToken<List<NoticeBean>>() {}.getType());
+		        String text = "";
+		        for(NoticeBean notice : noticeList){
+		        	text += notice.getDetail();
+		        }
+		        mNotice.setText(text);
+			}
+        	
+        });
     }
 
     @Override
@@ -216,8 +245,6 @@ public class TopNewsFragment extends BaseListFragment<Tweet> implements
         super.initView(view);
 
         mNotice = (TextView)view.findViewById(R.id.notice); 
-        mNotice.setText( "2.2.1.  紧急通知类消息紧急通知类型的消息主要指恶劣天 气警报或政府部门授权下发的紧急事件通知。 ");
-        
         mListView.setOnItemLongClickListener(this);
         mErrorLayout.setOnLayoutClickListener(new View.OnClickListener() {
 

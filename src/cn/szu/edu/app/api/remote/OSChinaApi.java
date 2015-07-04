@@ -3,12 +3,13 @@ package cn.szu.edu.app.api.remote;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URLEncoder;
-
+import java.util.HashMap;
+import java.util.Map;
 
 import org.kymjs.kjframe.utils.KJLoger;
 
+import android.net.Uri;
 import android.text.TextUtils;
-
 import cn.szu.edu.app.AppContext;
 import cn.szu.edu.app.AppException;
 import cn.szu.edu.app.api.ApiHttpClient;
@@ -22,6 +23,7 @@ import cn.szu.edu.app.util.TLog;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.networkbench.com.google.gson.Gson;
 
 public class OSChinaApi {
 
@@ -44,11 +46,12 @@ public class OSChinaApi {
 
     public static void getNoticeTopicList(String sign, String username,
             AsyncHttpResponseHandler handler) {
-        RequestParams params = new RequestParams();
-        params.put("sign", "");
+		Map<String,String> params = new HashMap<String,String>();
+        params.put("sign", sign);
         params.put("username", username);
-        params.put("pageSize", AppContext.PAGE_SIZE);
-        ApiHttpClient.client.get("http://localhost/szuapp/interface/getNoticeList.php", params, handler);
+        Gson gson = new Gson();
+        String parameters =  Uri.encode(gson.toJson(params));
+        ApiHttpClient.client.get("http://192.168.1.172/szuapp/interface/getNoticeList.php?key="+parameters,null, handler);
     }
     
     /**
