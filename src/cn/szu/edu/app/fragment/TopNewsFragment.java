@@ -2,6 +2,7 @@ package cn.szu.edu.app.fragment;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,8 @@ import cn.szu.edu.app.api.remote.OSChinaApi;
 import cn.szu.edu.app.base.BaseListFragment;
 import cn.szu.edu.app.bean.Constants;
 import cn.szu.edu.app.bean.NoticeBean;
+import cn.szu.edu.app.bean.PostBean;
+import cn.szu.edu.app.bean.PostBeanList;
 import cn.szu.edu.app.bean.Result;
 import cn.szu.edu.app.bean.ResultBean;
 import cn.szu.edu.app.bean.Tweet;
@@ -47,7 +50,7 @@ import com.networkbench.com.google.gson.reflect.TypeToken;
 /**
  * @author kymjs (http://www.kymjs.com)
  */
-public class TopNewsFragment extends BaseListFragment<Tweet> implements
+public class TopNewsFragment extends BaseListFragment<PostBean> implements
         OnItemLongClickListener, OnTabReselectListener {
 
     protected static final String TAG = TopNewsFragment.class.getSimpleName();
@@ -152,14 +155,16 @@ public class TopNewsFragment extends BaseListFragment<Tweet> implements
     }
 
     @Override
-    protected TweetsList parseList(InputStream is) throws Exception {
-        TweetsList list = XmlUtils.toBean(TweetsList.class, is);
+    protected PostBeanList parseList(InputStream is) throws Exception {
+        //TweetsList list = XmlUtils.toBean(TweetsList.class, is);
+    	Gson gson = new Gson();
+    	PostBeanList list = gson.fromJson(new InputStreamReader(is), new TypeToken<List<PostBean>>() {}.getType());
         return list;
     }
 
     @Override
-    protected TweetsList readList(Serializable seri) {
-        return ((TweetsList) seri);
+    protected PostBeanList readList(Serializable seri) {
+        return ((PostBeanList) seri);
     }
 
     @Override
@@ -200,7 +205,7 @@ public class TopNewsFragment extends BaseListFragment<Tweet> implements
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,
             long id) {
-        Tweet tweet = mAdapter.getItem(position);
+        PostBean tweet = mAdapter.getItem(position);
         if (tweet != null) {
             UIHelper.showTweetDetail(view.getContext(), null, tweet.getId());
         }
@@ -268,11 +273,11 @@ public class TopNewsFragment extends BaseListFragment<Tweet> implements
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view,
             int position, long id) {
-        Tweet tweet = mAdapter.getItem(position);
-        if (tweet != null) {
-            handleLongClick(tweet);
-            return true;
-        }
+//        Tweet tweet = mAdapter.getItem(position);
+//        if (tweet != null) {
+//            handleLongClick(tweet);
+//            return true;
+//        }
         return false;
     }
 
