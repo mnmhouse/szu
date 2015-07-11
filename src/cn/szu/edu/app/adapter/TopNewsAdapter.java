@@ -49,7 +49,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
  * @author kymjs
  * @date 2014年10月10日
  */
-public class TopNewsAdapter extends ListBaseAdapter<PostBean> {
+public class TopNewsAdapter extends ListBaseAdapter<Tweet> {
 
     static class ViewHolder {
         @InjectView(R.id.tv_tweet_name)
@@ -114,63 +114,63 @@ public class TopNewsAdapter extends ListBaseAdapter<PostBean> {
         } else {
             vh = (ViewHolder) convertView.getTag();
         }
-        final PostBean post = mDatas.get(position);
+        final Tweet tweet = mDatas.get(position);
 
-        if (post.getAuthorid() == AppContext.getInstance().getLoginUid()) {
+        if (tweet.getAuthorid() == AppContext.getInstance().getLoginUid()) {
             vh.del.setVisibility(View.VISIBLE);
             vh.del.setOnClickListener(new OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
-                    //optionDel(parent.getContext(), post, position);
+                    optionDel(parent.getContext(), tweet, position);
                 }
             });
         } else {
             vh.del.setVisibility(View.GONE);
         }
 
-        vh.face.setUserInfo(post.getAuthorid(), post.getAuthor());
-        vh.face.setAvatarUrl(post.getPortrait());
-        vh.author.setText(post.getAuthor());
-        vh.time.setText(StringUtils.friendly_time(post.getPubDate()));
+        vh.face.setUserInfo(tweet.getAuthorid(), tweet.getAuthor());
+        vh.face.setAvatarUrl(tweet.getPortrait());
+        vh.author.setText(tweet.getAuthor());
+        vh.time.setText(StringUtils.friendly_time(tweet.getPubDate()));
         vh.content.setMovementMethod(MyLinkMovementMethod.a());
         vh.content.setFocusable(false);
         vh.content.setDispatchToParent(true);
         vh.content.setLongClickable(false);
 
-//        Spanned span = Html.fromHtml(post.getBody().trim());
-//
-//        if (!StringUtils.isEmpty(post.getAttach())) {
-//            if (recordBitmap == null) {
-//                initRecordImg(parent.getContext());
-//            }
-//            ImageSpan recordImg = new ImageSpan(parent.getContext(),
-//                    recordBitmap);
-//            SpannableString str = new SpannableString("c");
-//            str.setSpan(recordImg, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-//            vh.content.setText(str);
-//            span = InputHelper.displayEmoji(context.getResources(), span);
-//            vh.content.append(span);
-//        } else {
-//            span = InputHelper.displayEmoji(context.getResources(), span);
-//            vh.content.setText(span);
-//        }
-//        MyURLSpan.parseLinkText(vh.content, span);
+        Spanned span = Html.fromHtml(tweet.getBody().trim());
 
-//        vh.commentcount.setText(post.getCommentCount() + "");
+        if (!StringUtils.isEmpty(tweet.getAttach())) {
+            if (recordBitmap == null) {
+                initRecordImg(parent.getContext());
+            }
+            ImageSpan recordImg = new ImageSpan(parent.getContext(),
+                    recordBitmap);
+            SpannableString str = new SpannableString("c");
+            str.setSpan(recordImg, 0, 1, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+            vh.content.setText(str);
+            span = InputHelper.displayEmoji(context.getResources(), span);
+            vh.content.append(span);
+        } else {
+            span = InputHelper.displayEmoji(context.getResources(), span);
+            vh.content.setText(span);
+        }
+        MyURLSpan.parseLinkText(vh.content, span);
 
-//        showTweetImage(vh, post.getImgSmall(), post.getImgBig(), parent.getContext());
-//        post.setLikeUsers(context, vh.likeUsers, true);
+        vh.commentcount.setText(tweet.getCommentCount() + "");
+
+        showTweetImage(vh, tweet.getImgSmall(), tweet.getImgBig(), parent.getContext());
+        tweet.setLikeUsers(context, vh.likeUsers, true);
         final ViewHolder vh1 = vh;
         OnClickListener likeClick = new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (AppContext.getInstance().isLogin()) {
-                    if (post.getAuthorid() == AppContext.getInstance()
+                    if (tweet.getAuthorid() == AppContext.getInstance()
                             .getLoginUid()) {
                         AppContext.showToast("不能给自己点赞~");
                     } else {
-//                        updateLikeState(vh1, post);
+                        updateLikeState(vh1, tweet);
                     }
 
                 } else {
@@ -179,18 +179,18 @@ public class TopNewsAdapter extends ListBaseAdapter<PostBean> {
                 }
             }
         };
-//        if (post.getLikeUser() == null) {
-//            vh.likeOption.setVisibility(View.GONE);
-//        }
-//
-//        vh.likeOption.setOnClickListener(likeClick);
-//        if (post.getIsLike() == 1) {
-//            vh.likeState.setBackgroundResource(R.drawable.ic_likeed);
-//        } else {
-//            vh.likeState.setBackgroundResource(R.drawable.ic_unlike);
-//        }
+        if (tweet.getLikeUser() == null) {
+            vh.likeOption.setVisibility(View.GONE);
+        }
+
+        vh.likeOption.setOnClickListener(likeClick);
+        if (tweet.getIsLike() == 1) {
+            vh.likeState.setBackgroundResource(R.drawable.ic_likeed);
+        } else {
+            vh.likeState.setBackgroundResource(R.drawable.ic_unlike);
+        }
         vh.platform.setVisibility(View.VISIBLE);
-        switch (post.getAppclient()) {
+        switch (tweet.getAppclient()) {
         case Tweet.CLIENT_MOBILE:
             vh.platform.setText(R.string.from_mobile);
             break;

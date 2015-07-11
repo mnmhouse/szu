@@ -50,7 +50,7 @@ import com.networkbench.com.google.gson.reflect.TypeToken;
 /**
  * @author kymjs (http://www.kymjs.com)
  */
-public class TopNewsFragment extends BaseListFragment<PostBean> implements
+public class TopNewsFragment extends BaseListFragment<Tweet> implements
         OnItemLongClickListener, OnTabReselectListener {
 
     protected static final String TAG = TopNewsFragment.class.getSimpleName();
@@ -155,16 +155,30 @@ public class TopNewsFragment extends BaseListFragment<PostBean> implements
     }
 
     @Override
-    protected PostBeanList parseList(InputStream is) throws Exception {
+    protected TweetsList parseList(InputStream is) throws Exception {
         //TweetsList list = XmlUtils.toBean(TweetsList.class, is);
+    	TweetsList tweetsList = new TweetsList();
     	Gson gson = new Gson();
     	PostBeanList list = gson.fromJson(new InputStreamReader(is), new TypeToken<List<PostBean>>() {}.getType());
-        return list;
+    	tweetsList.setPagesize(list.getPageSize());
+    	tweetsList.setTweetCount(list.getPostCount());
+    	
+    	for(PostBean post  : list.getPostlist()){
+    		Tweet tweet = new Tweet();
+    		tweet.setPortrait(post.getPortrait());
+    		tweet.setAuthor(post.getAuthor());
+    		tweet.setAuthorid(post.getAuthorid());
+    		tweet.setPubDate(post.getPubDate());
+    		tweet.setBody(post.getTitle());
+    		tweet.setCommentCount(String.valueOf(post.getAnswerCount()));
+    		
+    	}
+        return tweetsList;
     }
 
     @Override
-    protected PostBeanList readList(Serializable seri) {
-        return ((PostBeanList) seri);
+    protected TweetsList readList(Serializable seri) {
+        return ((TweetsList) seri);
     }
 
     @Override
@@ -273,11 +287,11 @@ public class TopNewsFragment extends BaseListFragment<PostBean> implements
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view,
             int position, long id) {
-//        Tweet tweet = mAdapter.getItem(position);
-//        if (tweet != null) {
-//            handleLongClick(tweet);
-//            return true;
-//        }
+        Tweet tweet = mAdapter.getItem(position);
+        if (tweet != null) {
+            handleLongClick(tweet);
+            return true;
+        }
         return false;
     }
 
