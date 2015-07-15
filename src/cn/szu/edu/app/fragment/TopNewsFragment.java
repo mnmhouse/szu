@@ -187,11 +187,12 @@ public class TopNewsFragment extends BaseListFragment<Tweet> implements
         if (bundle != null) {
             String str = bundle.getString("topic");
             if (str != null) {
-                OSChinaApi.getTweetTopicList(mCurrentPage, str, mHandler);
+                //OSChinaApi.getTweetTopicList(mCurrentPage, str, mHandler);
                 return;
             }
         }
-        OSChinaApi.getTweetList(mCatalog, mCurrentPage, mHandler);
+//        OSChinaApi.getTweetList(mCatalog, mCurrentPage, mHandler);
+        OSChinaApi.getPostList2(mCatalog, mCurrentPage, mHandler);
         
         OSChinaApi.getNoticeTopicList("", "", new AsyncHttpResponseHandler() {
 
