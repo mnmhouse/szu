@@ -219,7 +219,7 @@ public class TopNewsFragment extends BaseListFragment<Tweet> implements
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,
             long id) {
-        PostBean tweet = mAdapter.getItem(position);
+        Tweet tweet = mAdapter.getItem(position);
         if (tweet != null) {
             UIHelper.showTweetDetail(view.getContext(), null, tweet.getId());
         }
