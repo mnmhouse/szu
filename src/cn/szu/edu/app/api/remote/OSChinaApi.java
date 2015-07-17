@@ -51,7 +51,7 @@ public class OSChinaApi {
         params.put("username", username);
         Gson gson = new Gson();
         String parameters =  Uri.encode(gson.toJson(params));
-        ApiHttpClient.client.get("http://192.168.1.100/szuapp/interface/getNoticeList.php?key="+parameters,null, handler);
+        ApiHttpClient.client.get("http://192.168.1.102/szuapp/interface/getNoticeList.php?key="+parameters,null, handler);
     }
 
     public static void getPosts(int catalog, int page,
@@ -62,7 +62,7 @@ public class OSChinaApi {
         params.put("page", AppContext.PAGE_SIZE);
         Gson gson = new Gson();
         String parameters =  Uri.encode(gson.toJson(params));
-        ApiHttpClient.client.get("http://192.168.1.100/szuapp/interface/getPostList.php?key="+parameters,null, handler);
+        ApiHttpClient.client.get("http://192.168.1.102/szuapp/interface/getPostList.php?key="+parameters,null, handler);
     }
     
     /**
