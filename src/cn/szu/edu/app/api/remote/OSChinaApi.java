@@ -54,7 +54,7 @@ public class OSChinaApi {
         ApiHttpClient.client.get("http://192.168.1.102/szuapp/interface/getNoticeList.php?key="+parameters,null, handler);
     }
 
-    public static void getPosts(int catalog, int page,
+    public static void getPostList2(int catalog, int page,
             AsyncHttpResponseHandler handler) {
     	Map<String,Integer> params = new HashMap<String,Integer>();
         params.put("catalog", catalog);
