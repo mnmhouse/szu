@@ -54,7 +54,7 @@ public class TopNewsFragment extends BaseListFragment<Tweet> implements
         OnItemLongClickListener, OnTabReselectListener {
 
     protected static final String TAG = TopNewsFragment.class.getSimpleName();
-    private static final String CACHE_KEY_PREFIX = "tweetslist_";
+    private static final String CACHE_KEY_PREFIX = "topNewslist_";
     private TextView mNotice;
     private List<NoticeBean> noticeList = new ArrayList<NoticeBean>();
     
@@ -159,11 +159,9 @@ public class TopNewsFragment extends BaseListFragment<Tweet> implements
         //TweetsList list = XmlUtils.toBean(TweetsList.class, is);
     	TweetsList tweetsList = new TweetsList();
     	Gson gson = new Gson();
-    	PostBeanList list = gson.fromJson(new InputStreamReader(is), new TypeToken<List<PostBean>>() {}.getType());
-    	tweetsList.setPagesize(list.getPageSize());
-    	tweetsList.setTweetCount(list.getPostCount());
+    	List<PostBean> list = gson.fromJson(new InputStreamReader(is), new TypeToken<List<PostBean>>() {}.getType());
     	
-    	for(PostBean post  : list.getPostlist()){
+    	for(PostBean post  : list){
     		Tweet tweet = new Tweet();
     		tweet.setPortrait(post.getPortrait());
     		tweet.setAuthor(post.getAuthor());
@@ -171,6 +169,7 @@ public class TopNewsFragment extends BaseListFragment<Tweet> implements
     		tweet.setPubDate(post.getPubDate());
     		tweet.setBody(post.getTitle());
     		tweet.setCommentCount(String.valueOf(post.getAnswerCount()));
+    		tweetsList.getTweetslist().add(tweet);
     		
     	}
         return tweetsList;
@@ -192,7 +191,7 @@ public class TopNewsFragment extends BaseListFragment<Tweet> implements
             }
         }
 //        OSChinaApi.getTweetList(mCatalog, mCurrentPage, mHandler);
-        OSChinaApi.getPostList2(mCatalog, mCurrentPage, mHandler);
+        OSChinaApi.getPostInfoList(mCatalog, mCurrentPage, mHandler);
         
         OSChinaApi.getNoticeTopicList("", "", new AsyncHttpResponseHandler() {
 

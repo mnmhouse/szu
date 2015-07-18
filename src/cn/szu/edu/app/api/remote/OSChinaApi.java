@@ -54,12 +54,12 @@ public class OSChinaApi {
         ApiHttpClient.client.get("http://192.168.1.102/szuapp/interface/getNoticeList.php?key="+parameters,null, handler);
     }
 
-    public static void getPostList2(int catalog, int page,
+    public static void getPostInfoList(int catalog, int page,
             AsyncHttpResponseHandler handler) {
     	Map<String,Integer> params = new HashMap<String,Integer>();
         params.put("catalog", catalog);
-        params.put("pageIndex", page);
-        params.put("page", AppContext.PAGE_SIZE);
+        params.put("page", page);
+        params.put("pageSize", AppContext.PAGE_SIZE);
         Gson gson = new Gson();
         String parameters =  Uri.encode(gson.toJson(params));
         ApiHttpClient.client.get("http://192.168.1.102/szuapp/interface/getPostList.php?key="+parameters,null, handler);

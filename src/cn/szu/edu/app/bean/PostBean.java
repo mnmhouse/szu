@@ -33,7 +33,7 @@ public class PostBean extends Entity implements Parcelable {
 	private String answer;
 	private String portrait;
 	private String catalogname;
-	private List<Image> imageArray;
+	//private List<Image> imageArray;
 	private int appclient;
 	
 	public class Image implements Serializable {
@@ -118,13 +118,13 @@ public class PostBean extends Entity implements Parcelable {
 		this.catalogname = catalogname;
 	}
 
-	public List<Image> getImageArray() {
-		return imageArray;
-	}
-
-	public void setImageArray(List<Image> imageArray) {
-		this.imageArray = imageArray;
-	}
+//	public List<Image> getImageArray() {
+//		return imageArray;
+//	}
+//
+//	public void setImageArray(List<Image> imageArray) {
+//		this.imageArray = imageArray;
+//	}
 
 	public int getAppclient() {
 		return appclient;
