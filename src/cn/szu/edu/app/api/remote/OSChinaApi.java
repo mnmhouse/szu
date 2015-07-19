@@ -64,7 +64,14 @@ public class OSChinaApi {
         String parameters =  Uri.encode(gson.toJson(params));
         ApiHttpClient.client.get("http://192.168.1.102/szuapp/interface/getPostList.php?key="+parameters,null, handler);
     }
-    
+
+    public static void getPostInfoDetail(int id, AsyncHttpResponseHandler handler) {
+    	Map<String,Integer> params = new HashMap<String,Integer>();
+        params.put("id", id);
+        Gson gson = new Gson();
+        String parameters =  Uri.encode(gson.toJson(params));
+        ApiHttpClient.client.get("http://192.168.1.102/szuapp/interface/postInformation.php?key="+parameters,null, handler);
+    }
     /**
      * 获取新闻列表
      * 

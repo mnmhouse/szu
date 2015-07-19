@@ -163,6 +163,7 @@ public class TopNewsFragment extends BaseListFragment<Tweet> implements
     	
     	for(PostBean post  : list){
     		Tweet tweet = new Tweet();
+    		tweet.setId(post.getId());
     		tweet.setPortrait(post.getPortrait());
     		tweet.setAuthor(post.getAuthor());
     		tweet.setAuthorid(post.getAuthorid());

@@ -28,7 +28,8 @@ public class PostBean extends Entity implements Parcelable {
 	private String author;
 	private String pubDate;
 	private String title;
-	private int answerCount;
+	private String body;
+	private String answerCount;
 	private int authorid;
 	private String answer;
 	private String portrait;
@@ -78,11 +79,19 @@ public class PostBean extends Entity implements Parcelable {
 		this.title = title;
 	}
 
-	public int getAnswerCount() {
+	public String getBody() {
+		return body;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	public String getAnswerCount() {
 		return answerCount;
 	}
 
-	public void setAnswerCount(int answerCount) {
+	public void setAnswerCount(String answerCount) {
 		this.answerCount = answerCount;
 	}
 

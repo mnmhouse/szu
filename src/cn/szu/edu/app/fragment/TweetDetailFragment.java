@@ -2,6 +2,7 @@ package cn.szu.edu.app.fragment;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.List;
 
@@ -34,6 +35,7 @@ import cn.szu.edu.app.base.BeseHaveHeaderListFragment;
 import cn.szu.edu.app.base.ListBaseAdapter;
 import cn.szu.edu.app.bean.Comment;
 import cn.szu.edu.app.bean.CommentList;
+import cn.szu.edu.app.bean.PostBean;
 import cn.szu.edu.app.bean.Result;
 import cn.szu.edu.app.bean.ResultBean;
 import cn.szu.edu.app.bean.Tweet;
@@ -55,6 +57,8 @@ import cn.szu.edu.app.widget.RecordButtonUtil;
 import cn.szu.edu.app.widget.RecordButtonUtil.OnPlayListener;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.networkbench.com.google.gson.Gson;
+import com.networkbench.com.google.gson.reflect.TypeToken;
 
 /***
  * 动弹详情，实际每个item显示的数据类型是Comment
@@ -405,7 +409,7 @@ public class TweetDetailFragment extends
         mErrorLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
         if (TDevice.hasInternet()
                 && (!CacheManager.isExistDataCache(getActivity(), key) || isRefresh)) {
-            OSChinaApi.getTweetDetail(mTweetId, mDetailHandler);
+            OSChinaApi.getPostInfoDetail(mTweetId, mDetailHandler);
         } else {
             readDetailCacheData(key);
         }
@@ -502,7 +506,22 @@ public class TweetDetailFragment extends
 
     @Override
     protected TweetDetail getDetailBean(ByteArrayInputStream is) {
-        return XmlUtils.toBean(TweetDetail.class, is);
+        //return XmlUtils.toBean(TweetDetail.class, is);
+    	TweetDetail tweetDetail = new TweetDetail();
+    	Tweet tweet = new Tweet();
+    	Gson gson = new Gson();
+    	List<PostBean> postList = gson.fromJson(new InputStreamReader(is), new TypeToken<List<PostBean>>() {}.getType());
+    	if(postList != null && postList.size() > 0){
+    		PostBean post = postList.get(0);
+    		tweet.setId(post.getId());
+    		tweet.setAuthorid(post.getAuthorid());
+    		tweet.setAuthor(post.getAuthor());
+    		tweet.setPubDate(post.getPubDate());
+    		tweet.setBody(post.getBody());
+    		tweet.setPortrait(post.getPortrait());
+    		tweetDetail.setTweet(tweet);
+    	}
+    	return tweetDetail;
     }
 
     @Override
