@@ -159,9 +159,9 @@ public class TopNewsFragment extends BaseListFragment<Tweet> implements
         //TweetsList list = XmlUtils.toBean(TweetsList.class, is);
     	TweetsList tweetsList = new TweetsList();
     	Gson gson = new Gson();
-    	List<PostBean> list = gson.fromJson(new InputStreamReader(is), new TypeToken<List<PostBean>>() {}.getType());
+    	PostBeanList list = gson.fromJson(new InputStreamReader(is), PostBeanList.class);
     	
-    	for(PostBean post  : list){
+    	for(PostBean post  : list.getList()){
     		Tweet tweet = new Tweet();
     		tweet.setId(post.getId());
     		tweet.setPortrait(post.getPortrait());

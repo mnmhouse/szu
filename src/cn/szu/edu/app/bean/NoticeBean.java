@@ -2,8 +2,6 @@ package cn.szu.edu.app.bean;
 
 import java.io.Serializable;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-
 /**
  * 通知信息实体类
  * 

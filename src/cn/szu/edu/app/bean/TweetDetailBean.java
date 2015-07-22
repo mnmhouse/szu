@@ -1,6 +1,5 @@
 package cn.szu.edu.app.bean;
 
-import java.util.List;
 
 
 /**

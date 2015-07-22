@@ -54,6 +54,21 @@ public class CommentBean {
 }
 
 class Refers {
+	
 	private String refertitle;
 	private String referautor;
+	
+	public String getRefertitle() {
+		return refertitle;
+	}
+	public void setRefertitle(String refertitle) {
+		this.refertitle = refertitle;
+	}
+	public String getReferautor() {
+		return referautor;
+	}
+	public void setReferautor(String referautor) {
+		this.referautor = referautor;
+	}
+
 }

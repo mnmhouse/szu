@@ -1,13 +1,9 @@
 package cn.szu.edu.app.bean;
 
 import java.io.Serializable;
-import java.util.List;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamImplicit;
 
 /**
  * 帖子实体类

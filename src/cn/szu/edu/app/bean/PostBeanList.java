@@ -3,8 +3,6 @@ package cn.szu.edu.app.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
-
 /**
  * 帖子实体类列表
  * @author FireAnt（http://my.oschina.net/LittleDY）
@@ -20,7 +18,7 @@ public class PostBeanList extends Entity implements ListEntity<PostBean> {
 	
 	private int postCount;
 	
-	private List<PostBean> postlist = new ArrayList<PostBean>();
+	private List<PostBean> post_list = new ArrayList<PostBean>();
 	
 	public int getPageSize() {
 		return pageSize;
@@ -28,11 +26,14 @@ public class PostBeanList extends Entity implements ListEntity<PostBean> {
 	public int getPostCount() {
 		return postCount;
 	}
-	public List<PostBean> getPostlist() {
-		return postlist;
+	public List<PostBean> getPost_list() {
+		return post_list;
+	}
+	public void setPost_list(List<PostBean> list) {
+		post_list = list;
 	}
 	@Override
 	public List<PostBean> getList() {
-		return postlist;
+		return post_list;
 	}
 }
