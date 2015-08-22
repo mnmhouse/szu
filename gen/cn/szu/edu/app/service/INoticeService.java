@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: D:\\Workspaces\\Android\\Android_App\\szu-android-app\\src\\cn\\szu\\edu\\app\\service\\INoticeService.aidl
+ * Original file: /Users/house/project/szu-android-app/src/cn/szu/edu/app/service/INoticeService.aidl
  */
 package cn.szu.edu.app.service;
 public interface INoticeService extends android.os.IInterface

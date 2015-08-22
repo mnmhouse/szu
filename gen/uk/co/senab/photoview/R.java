@@ -11,10 +11,10 @@ public final class R {
 		public static final int ic_launcher = 0x7f02017c;
 	}
 	public static final class string {
-		public static final int app_name = 0x7f0b000d;
+		public static final int app_name = 0x7f060000;
 	}
 	public static final class style {
-		public static final int AppBaseTheme = 0x7f0c008b;
-		public static final int AppTheme = 0x7f0c008c;
+		public static final int AppBaseTheme = 0x7f070000;
+		public static final int AppTheme = 0x7f070001;
 	}
 }

@@ -119,9 +119,9 @@ public class MainActivity extends ActionBarActivity implements  OnTabChangeListe
 
         handleIntent(getIntent());
         // 注册听云的检测分析
-        NBSAppAgent.setLicenseKey("0ed0cc66c5cb45c0a91c6fa932ca99ac")
-                .withCrashReportEnabled(true).withLocationServiceEnabled(true)
-                .start(this);
+//        NBSAppAgent.setLicenseKey("0ed0cc66c5cb45c0a91c6fa932ca99ac")
+//                .withCrashReportEnabled(true).withLocationServiceEnabled(true)
+//                .start(this);
     }
 
     @Override

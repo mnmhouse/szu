@@ -51,7 +51,7 @@ public class OSChinaApi {
         params.put("username", username);
         Gson gson = new Gson();
         String parameters =  Uri.encode(gson.toJson(params));
-        ApiHttpClient.client.get("http://qingqula.com/app/interface/getNoticeList.php?key="+parameters,null, handler);
+        ApiHttpClient.client.get("http://127.0.0.0:8080/app/interface/getNoticeList.php?key="+parameters,null, handler);
     }
 
     public static void getPostInfoList(int catalog, int page,
@@ -62,7 +62,7 @@ public class OSChinaApi {
         params.put("pageSize", AppContext.PAGE_SIZE);
         Gson gson = new Gson();
         String parameters =  Uri.encode(gson.toJson(params));
-        ApiHttpClient.client.get("http://qingqula.com/app/interface/getPostList.php?key="+parameters,null, handler);
+        ApiHttpClient.client.get("http://127.0.0.0:8080/app/interface/getPostList.php?key="+parameters,null, handler);
     }
 
     public static void getPostInfoDetail(int id, AsyncHttpResponseHandler handler) {
@@ -70,7 +70,7 @@ public class OSChinaApi {
         params.put("id", id);
         Gson gson = new Gson();
         String parameters =  Uri.encode(gson.toJson(params));
-        ApiHttpClient.client.get("http://qingqula.com/app/interface/postInformation.php?key="+parameters,null, handler);
+        ApiHttpClient.client.get("http://127.0.0.0:8080/app/interface/postInformation.php?key="+parameters,null, handler);
     }
     /**
      * 获取新闻列表

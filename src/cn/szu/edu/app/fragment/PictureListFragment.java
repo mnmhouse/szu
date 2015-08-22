@@ -264,11 +264,11 @@ public class PictureListFragment extends Fragment implements Constant {
         return view;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        return true;
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        return true;
+//    }
 
     @Override
 	public void onResume() {

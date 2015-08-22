@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: D:\\Workspaces\\Android\\Android_App\\libraries\\UmengShareLib\\src\\com\\sina\\sso\\RemoteSSO.aidl
+ * Original file: /Users/house/project/szu-android-app/libraries/UmengShareLib/src/com/sina/sso/RemoteSSO.aidl
  */
 package com.sina.sso;
 public interface RemoteSSO extends android.os.IInterface
