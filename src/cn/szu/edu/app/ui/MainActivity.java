@@ -280,6 +280,7 @@ public class MainActivity extends ActionBarActivity implements  OnTabChangeListe
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setIcon(R.drawable.ic_drawer);
         actionBar.setTitle(mTitle);
+      
     }
 
     @Override

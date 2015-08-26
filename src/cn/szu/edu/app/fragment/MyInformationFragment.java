@@ -15,6 +15,8 @@ import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -255,6 +257,12 @@ public class MyInformationFragment extends BaseFragment {
         // List<Team> teams = TeamList.toTeamList(cache);
         // addTeamLayout(teams);
         // }
+        
+        ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setIcon(R.drawable.ic_drawer);
+        actionBar.setTitle("我的中心");
     }
 
     private void fillUI() {

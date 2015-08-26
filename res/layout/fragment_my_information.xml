@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="1px"
                 android:background="@color/list_divider_color" />
-
+<!-- 便签 -->
             <LinearLayout
                 android:id="@+id/rl_note"
                 style="@style/option_item_rl"
@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="1px"
                 android:background="@color/list_divider_color" />
-
+<!-- 团队 -->
             <LinearLayout
                 android:id="@+id/rl_team"
                 style="@style/option_item_rl" 

@@ -44,7 +44,7 @@
                 android:layout_below="@id/iv_avatar"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/space_5"
-                android:textColor="@color/white"
+              
                 android:textSize="@dimen/text_size_18" />
 
             <ImageView
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
-
+<!-- 积分 -->
             <LinearLayout
                 android:id="@+id/ly_score"
                 style="@style/uset_information_ll" 
@@ -86,7 +86,7 @@
                     style="@style/user_formation_info"
                     android:text="@string/user_score" />
             </LinearLayout>
-
+<!--收藏  -->
             <LinearLayout
                 android:id="@+id/ly_favorite"
                 style="@style/uset_information_ll" >
@@ -99,7 +99,7 @@
                     style="@style/user_formation_info"
                     android:text="跟帖" />
             </LinearLayout>
-
+<!-- 关注 -->
             <LinearLayout
                 android:id="@+id/ly_following"
                 style="@style/uset_information_ll" >
@@ -112,7 +112,7 @@
                     style="@style/user_formation_info"
                     android:text="@string/following" />
             </LinearLayout>
-
+<!--  粉丝-->
             <LinearLayout
                 android:id="@+id/ly_follower"
                 style="@style/uset_information_ll"
