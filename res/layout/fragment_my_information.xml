@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent" 
+   >
 
     <cn.szu.edu.app.widget.CustomerScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent" 
+       
+        >
 
         <LinearLayout
             android:id="@+id/rootview"
@@ -26,7 +29,7 @@
 
                 <TextView
                     style="@style/option_item_text"
-                    android:text="@string/message" />
+                    android:text="@string/modify_data" />
 
                 <TextView
                     android:id="@+id/tv_mes"
@@ -52,7 +55,7 @@
 
                 <TextView
                     style="@style/option_item_text"
-                    android:text="@string/blog" />
+                    android:text="@string/my_set"/>
             </LinearLayout>
 
             <View
@@ -62,7 +65,8 @@
 
             <LinearLayout
                 android:id="@+id/rl_note"
-                style="@style/option_item_rl" >
+                style="@style/option_item_rl"
+                android:visibility="gone">
 
                 <ImageView
                     style="@style/option_item_img"
@@ -81,7 +85,8 @@
 
             <LinearLayout
                 android:id="@+id/rl_team"
-                style="@style/option_item_rl" >
+                style="@style/option_item_rl" 
+                android:visibility="gone">
 
                 <ImageView
                     style="@style/option_item_img"

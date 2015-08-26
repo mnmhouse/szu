@@ -146,10 +146,13 @@ public class LoginActivity extends BaseActivity {
     }
 
     private final AsyncHttpResponseHandler mHandler = new AsyncHttpResponseHandler() {
-
+       
+    	
         @Override
         public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
             try {
+            	System.out.println(arg2.toString());
+            	
                 AsyncHttpClient client = ApiHttpClient.getHttpClient();
                 HttpContext httpContext = client.getHttpContext();
                 CookieStore cookies = (CookieStore) httpContext

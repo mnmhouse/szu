@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res/cn.szu.edu.app"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:background="@drawable/user_center_bg"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -57,7 +56,10 @@
                 android:layout_centerVertical="true"
                 android:layout_margin="@dimen/space_10"
                 android:clickable="true"
-                android:src="@drawable/icon_qr_code" />
+                android:src="@drawable/icon_qr_code"
+                 android:visibility="gone"
+                
+                 />
         </RelativeLayout>
 
         <View
@@ -73,7 +75,8 @@
 
             <LinearLayout
                 android:id="@+id/ly_score"
-                style="@style/uset_information_ll" >
+                style="@style/uset_information_ll" 
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tv_score"
@@ -94,7 +97,7 @@
 
                 <TextView
                     style="@style/user_formation_info"
-                    android:text="@string/favorite" />
+                    android:text="跟帖" />
             </LinearLayout>
 
             <LinearLayout
@@ -112,7 +115,8 @@
 
             <LinearLayout
                 android:id="@+id/ly_follower"
-                style="@style/uset_information_ll" >
+                style="@style/uset_information_ll"
+                android:visibility="gone" >
 
                 <TextView
                     android:id="@+id/tv_follower"

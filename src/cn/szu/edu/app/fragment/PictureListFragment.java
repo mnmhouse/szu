@@ -20,7 +20,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -103,25 +102,7 @@ public class PictureListFragment extends Fragment implements Constant {
 
             try {
                 if (null != json) {
-//                    JSONObject newsObject = new JSONObject(json);
-//                    JSONObject jsonObject = newsObject.getJSONObject("data");
-//                    JSONArray blogsJson = jsonObject.getJSONArray("blogs");
-//                    JSONArray blogsJson = new JSONArray(json);
                     picsList = new Gson().fromJson(json,new TypeToken<List<PicsBean>>() {}.getType());
-//                    for (int i = 0; i < blogsJson.length(); i++) {
-//                        JSONObject newsInfoLeftObject = blogsJson.getJSONObject(i);
-//                        Log.i("MainActiivty", newsInfoLeftObject.toString());
-//                        PicsBean newsInfo1 = new PicsBean();
-//                        newsInfo1.setAlbid(newsInfoLeftObject.isNull("albid") ? "" : newsInfoLeftObject.getString("albid"));
-//                        newsInfo1.setIsrc(newsInfoLeftObject.isNull("isrc") ? "" : newsInfoLeftObject.getString("isrc"));
-//                        newsInfo1.setMsg(newsInfoLeftObject.isNull("msg") ? "" : newsInfoLeftObject.getString("msg"));
-//                        newsInfo1.setHeight(newsInfoLeftObject.getInt("iht"));
-//                        newsInfo1.setAlbid(newsInfoLeftObject.isNull("id") ? "" : newsInfoLeftObject.getString("id"));
-//                        newsInfo1.setIsrc(newsInfoLeftObject.isNull("thumbnail_url") ? "" : newsInfoLeftObject.getString("thumbnail_url"));
-//                        newsInfo1.setMsg(newsInfoLeftObject.isNull("post_title") ? "" : newsInfoLeftObject.getString("post_title"));
-//                        newsInfo1.setHeight(200);
-//                        duitangs.add(newsInfo1);
-//                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -264,11 +245,6 @@ public class PictureListFragment extends Fragment implements Constant {
         return view;
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//
-//        return true;
-//    }
 
     @Override
 	public void onResume() {

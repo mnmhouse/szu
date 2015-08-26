@@ -71,7 +71,9 @@ public class MainActivity extends ActionBarActivity implements  OnTabChangeListe
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Constants.INTENT_ACTION_NOTICE)) {
-                mNotice = (Notice) intent.getSerializableExtra("notice_bean");
+                mNotice = new Notice();
+                		
+//                		(Notice) intent.getSerializableExtra("notice_bean");
                 int atmeCount = mNotice.getAtmeCount();// @我
                 int msgCount = mNotice.getMsgCount();// 留言
                 int reviewCount = mNotice.getReviewCount();// 评论

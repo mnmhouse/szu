@@ -9,10 +9,10 @@ import cn.szu.edu.app.viewpagerfragment.CollegeNoticeViewPagerFragment;
 
 public enum MainTab {
 
-	TWEET(0, R.string.main_tab_name_tweet, R.drawable.tab_icon_tweet,
+	TWEET(0, R.string.main_tab_name_forum, R.drawable.tab_icon_new,
 			TopNewsFragment.class),
 			
-	GROUP(1, R.string.main_tab_name_news, R.drawable.tab_icon_new,
+	GROUP(1, R.string.main_tab_name_weiqun, R.drawable.tab_icon_tweet,
 			PictureListFragment.class),			
 			
 	TOPICLIST(2, R.string.main_tab_name_question, R.drawable.tab_icon_tweet,
