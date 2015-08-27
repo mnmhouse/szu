@@ -258,11 +258,7 @@ public class MyInformationFragment extends BaseFragment {
         // addTeamLayout(teams);
         // }
         
-        ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setIcon(R.drawable.ic_drawer);
-        actionBar.setTitle("我的中心");
+      ((ActionBarActivity) getActivity()).getSupportActionBar().setTitle("我的中心");
     }
 
     private void fillUI() {

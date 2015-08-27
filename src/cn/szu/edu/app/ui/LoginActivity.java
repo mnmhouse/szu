@@ -1,6 +1,7 @@
 package cn.szu.edu.app.ui;
 
 import java.io.ByteArrayInputStream;
+import java.io.UnsupportedEncodingException;
 
 import org.apache.http.Header;
 import org.apache.http.client.CookieStore;
@@ -13,6 +14,7 @@ import org.kymjs.kjframe.utils.KJLoger;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -137,12 +139,12 @@ public class LoginActivity extends BaseActivity {
             return;
         }
 
-        // if the data has ready
         mUserName = mEtUserName.getText().toString();
         mPassword = mEtPassword.getText().toString();
 
         showWaitDialog(R.string.progress_login);
-        OSChinaApi.login(mUserName, mPassword, mHandler);
+//        OSChinaApi.login(mUserName, mPassword, mHandler);
+        OSChinaApi.loginRequest(mUserName, mPassword, mHandler);
     }
 
     private final AsyncHttpResponseHandler mHandler = new AsyncHttpResponseHandler() {
@@ -151,8 +153,7 @@ public class LoginActivity extends BaseActivity {
         @Override
         public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
             try {
-            	System.out.println(arg2.toString());
-            	
+            	Log.i("good", new String(arg2, "UTF-8"));
                 AsyncHttpClient client = ApiHttpClient.getHttpClient();
                 HttpContext httpContext = client.getHttpContext();
                 CookieStore cookies = (CookieStore) httpContext
@@ -197,6 +198,12 @@ public class LoginActivity extends BaseActivity {
         public void onFailure(int arg0, Header[] arg1, byte[] arg2,
                 Throwable arg3) {
             hideWaitDialog();
+            try {
+				Log.i("error", new String(arg2, "UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             AppContext.showToast(R.string.tip_login_error_for_network);
         }
     };

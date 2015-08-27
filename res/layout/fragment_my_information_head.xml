@@ -154,7 +154,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/space_5"
             android:text="@string/my_information_unlogin_tips"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size_18" />
     </RelativeLayout>
 

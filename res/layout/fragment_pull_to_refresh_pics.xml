@@ -4,7 +4,7 @@
     android:layout_height="match_parent" >
     
     
-      <EditText
+<!--       <EditText
         android:id="@+id/search_text"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -14,12 +14,12 @@
         android:background="@drawable/bg_search_text"
         android:text="搜索你感兴趣的微群"
         android:textSize="14sp"
-        />
+        /> -->
       
     <me.maxwin.view.XListView
         android:id="@+id/picture_list"
         android:scrollbars="vertical"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="10dp"
          android:fastScrollEnabled="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

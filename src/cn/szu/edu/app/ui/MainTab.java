@@ -6,11 +6,12 @@ import cn.szu.edu.app.fragment.PictureListFragment;
 import cn.szu.edu.app.fragment.TopNewsFragment;
 import cn.szu.edu.app.fragment.TopicListFragment;
 import cn.szu.edu.app.viewpagerfragment.CollegeNoticeViewPagerFragment;
+import cn.szu.edu.app.viewpagerfragment.TweetsViewPagerFragment;
 
 public enum MainTab {
 
 	TWEET(0, R.string.main_tab_name_forum, R.drawable.tab_icon_new,
-			TopNewsFragment.class),
+			TweetsViewPagerFragment.class),
 			
 	GROUP(1, R.string.main_tab_name_weiqun, R.drawable.tab_icon_tweet,
 			PictureListFragment.class),			

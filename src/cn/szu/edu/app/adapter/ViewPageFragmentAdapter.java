@@ -55,9 +55,15 @@ public class ViewPageFragmentAdapter extends FragmentStatePagerAdapter {
                 R.layout.base_viewpage_fragment_tab_item, null, false);
         TextView title = (TextView) v.findViewById(R.id.tab_title);
         title.setText(info.title);
-        mPagerStrip.addTab(v);
-
+        if (info.tag.equalsIgnoreCase("new_tweets")) {
+        	
+		}else {
+			mPagerStrip.addTab(v);
+			
+		}
         mTabs.add(info);
+
+       
         notifyDataSetChanged();
     }
 

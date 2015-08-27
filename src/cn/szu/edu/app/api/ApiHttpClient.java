@@ -90,6 +90,16 @@ public class ApiHttpClient {
                 .append(params).toString());
     }
 
+    
+    public static void postSZ(String partUrl, RequestParams params,
+            AsyncHttpResponseHandler handler) {
+    	
+        client.post(partUrl ,handler);
+        System.out.println("POST password"+partUrl);
+//        log(new StringBuilder("POST ").append(partUrl).append("&")
+//                .append(params).toString());
+    }
+
     public static void postDirect(String url, RequestParams params,
             AsyncHttpResponseHandler handler) {
         client.post(url, params, handler);

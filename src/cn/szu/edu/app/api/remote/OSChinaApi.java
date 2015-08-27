@@ -2,14 +2,19 @@ package cn.szu.edu.app.api.remote;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.kymjs.kjframe.utils.KJLoger;
 
 import android.net.Uri;
+import android.provider.Settings.Secure;
 import android.text.TextUtils;
+import android.util.Log;
 import cn.szu.edu.app.AppContext;
 import cn.szu.edu.app.AppException;
 import cn.szu.edu.app.api.ApiHttpClient;
@@ -21,9 +26,11 @@ import cn.szu.edu.app.team.bean.Team;
 import cn.szu.edu.app.util.StringUtils;
 import cn.szu.edu.app.util.TLog;
 
+import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.networkbench.com.google.gson.Gson;
+
 
 public class OSChinaApi {
 
@@ -34,6 +41,8 @@ public class OSChinaApi {
      * @param password
      * @param handler
      */
+	
+	public static String URL_BASE ="http://liangxionghu-002-site2.site4future.com/app/interface/login.php?key=";
     public static void login(String username, String password,
             AsyncHttpResponseHandler handler) {
         RequestParams params = new RequestParams();
@@ -44,6 +53,36 @@ public class OSChinaApi {
         ApiHttpClient.post(loginurl, params, handler);
     }
 
+    public static void loginRequest(String username, String password,
+            AsyncHttpResponseHandler handler) {
+//        RequestParams params = new RequestParams();
+        JSONObject params  = new JSONObject();
+        
+        try {
+		params.put("username", "test");
+        params.put("passwd", "21513141314");
+        params.put("client", "1");
+        params.put("machineId",  Secure.getString(AppContext.getInstance().getContentResolver(), Secure.ANDROID_ID));
+        } catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        http://liangxionghu-002-site2.site4future.com/app/interface/login.php?key={"username":"test","passwd":"21513141314","machineId":"iphone_uuid"}
+    
+//       String parameters =  Uri.decode(URL_BASE+params.toString());
+        URL_BASE +=  Uri.encode(params.toString());
+//		URL_BASE +=  Uri.encode(params.toString());
+
+	
+	
+        Log.i("send data", URL_BASE.toString());
+//        AsyncHttpClient
+        AsyncHttpClient client = new AsyncHttpClient();
+          client.get(URL_BASE, handler);
+
+    }
+    
     public static void getNoticeTopicList(String sign, String username,
             AsyncHttpResponseHandler handler) {
 		Map<String,String> params = new HashMap<String,String>();
