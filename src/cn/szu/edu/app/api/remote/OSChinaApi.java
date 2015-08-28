@@ -43,6 +43,7 @@ public class OSChinaApi {
      */
 	
 	public static String URL_BASE ="http://liangxionghu-002-site2.site4future.com/app/interface/login.php?key=";
+	public static String BASE_URL ="http://liangxionghu-002-site2.site4future.com/app/interface/";
     public static void login(String username, String password,
             AsyncHttpResponseHandler handler) {
         RequestParams params = new RequestParams();
@@ -67,19 +68,10 @@ public class OSChinaApi {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        http://liangxionghu-002-site2.site4future.com/app/interface/login.php?key={"username":"test","passwd":"21513141314","machineId":"iphone_uuid"}
-    
-//       String parameters =  Uri.decode(URL_BASE+params.toString());
         URL_BASE +=  Uri.encode(params.toString());
-//		URL_BASE +=  Uri.encode(params.toString());
-
-	
 	
         Log.i("send data", URL_BASE.toString());
-//        AsyncHttpClient
-        AsyncHttpClient client = new AsyncHttpClient();
-          client.get(URL_BASE, handler);
+        ApiHttpClient.client.get(URL_BASE, handler);
 
     }
     
@@ -90,7 +82,7 @@ public class OSChinaApi {
         params.put("username", username);
         Gson gson = new Gson();
         String parameters =  Uri.encode(gson.toJson(params));
-        ApiHttpClient.client.get("http://127.0.0.0:8080/app/interface/getNoticeList.php?key="+parameters,null, handler);
+        ApiHttpClient.client.get(BASE_URL+"/getNoticeList.php?key="+parameters,null, handler);
     }
 
     public static void getPostInfoList(int catalog, int page,
@@ -101,7 +93,7 @@ public class OSChinaApi {
         params.put("pageSize", AppContext.PAGE_SIZE);
         Gson gson = new Gson();
         String parameters =  Uri.encode(gson.toJson(params));
-        ApiHttpClient.client.get("http://127.0.0.0:8080/app/interface/getPostList.php?key="+parameters,null, handler);
+        ApiHttpClient.client.get(BASE_URL+"getPostList.php?key="+parameters,null, handler);
     }
 
     public static void getPostInfoDetail(int id, AsyncHttpResponseHandler handler) {
@@ -109,7 +101,7 @@ public class OSChinaApi {
         params.put("id", id);
         Gson gson = new Gson();
         String parameters =  Uri.encode(gson.toJson(params));
-        ApiHttpClient.client.get("http://127.0.0.0:8080/app/interface/postInformation.php?key="+parameters,null, handler);
+        ApiHttpClient.client.get(BASE_URL+"postInformation.php?key="+parameters,null, handler);
     }
     /**
      * 获取新闻列表

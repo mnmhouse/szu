@@ -143,8 +143,8 @@ public class LoginActivity extends BaseActivity {
         mPassword = mEtPassword.getText().toString();
 
         showWaitDialog(R.string.progress_login);
-//        OSChinaApi.login(mUserName, mPassword, mHandler);
-        OSChinaApi.loginRequest(mUserName, mPassword, mHandler);
+        OSChinaApi.login(mUserName, mPassword, mHandler);
+//        OSChinaApi.loginRequest(mUserName, mPassword, mHandler);
     }
 
     private final AsyncHttpResponseHandler mHandler = new AsyncHttpResponseHandler() {
