@@ -19,6 +19,32 @@ public class GetUserInfoResp implements Serializable{
 	private  String followersCount ;
 	private  String returnCode ;
 	private  String returnMsg ;
+	
+	
+    private String account;
+
+    private String pwd;
+
+    private boolean isRememberMe;
+    
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+	public boolean isRememberMe() {
+		return isRememberMe;
+	}
+	public void setRememberMe(boolean isRememberMe) {
+		this.isRememberMe = isRememberMe;
+	}
 	public String getUid() {
 		return uid;
 	}

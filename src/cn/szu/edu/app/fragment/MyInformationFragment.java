@@ -49,8 +49,6 @@ import cn.szu.edu.app.widget.AvatarView;
 import cn.szu.edu.app.widget.BadgeView;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.networkbench.com.google.gson.Gson;
-import com.szu.edu.model.GetUserInfoResp;
 
 /**
  * 登录用户中心页面
@@ -94,9 +92,8 @@ public class MyInformationFragment extends BaseFragment {
 
     private boolean mIsWatingLogin;
 
-//    private User mInfo;
-    private GetUserInfoResp mInfo;
-    private AsyncTask<String, Void, GetUserInfoResp> mCacheTask;
+    private User mInfo;
+    private AsyncTask<String, Void, User> mCacheTask;
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
 
@@ -121,15 +118,11 @@ public class MyInformationFragment extends BaseFragment {
         @Override
         public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
             try {
-            	
-            	String result = new String(arg2,"UTF-8");
-            	Gson mGson = new Gson();
-            	 mInfo =mGson.fromJson(result, GetUserInfoResp.class);
-//                mInfo = XmlUtils.toBean(MyInformation.class,
-//                        new ByteArrayInputStream(arg2)).getUser();
+                mInfo = XmlUtils.toBean(MyInformation.class,
+                        new ByteArrayInputStream(arg2)).getUser();
                 if (mInfo != null) {
                     fillUI();
-                    AppContext.getInstance().updateUserInfos(mInfo);
+                    AppContext.getInstance().updateUserInfo(mInfo);
                     new SaveCacheTask(getActivity(), mInfo, getCacheKey())
                             .execute();
                 } else {
@@ -212,7 +205,7 @@ public class MyInformationFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         requestData(true);
-        mInfo = AppContext.getInstance().getLoginUserInfo();
+        mInfo = AppContext.getInstance().getLoginUser();
         fillUI();
     }
 
@@ -276,10 +269,10 @@ public class MyInformationFragment extends BaseFragment {
         mIvGender
                 .setImageResource(StringUtils.toInt(mInfo.getGender()) != 2 ? R.drawable.userinfo_icon_male
                         : R.drawable.userinfo_icon_female);
-//        mTvScore.setText(String.valueOf(mInfo.getScore()));
-        mTvFavorite.setText(String.valueOf(mInfo.getFavoriteCount()));
-        mTvFollowing.setText(String.valueOf(mInfo.getFollowersCount()));
-        mTvFans.setText(String.valueOf(mInfo.getFansCoun()));
+        mTvScore.setText(String.valueOf(mInfo.getScore()));
+        mTvFavorite.setText(String.valueOf(mInfo.getFavoritecount()));
+        mTvFollowing.setText(String.valueOf(mInfo.getFollowers()));
+        mTvFans.setText(String.valueOf(mInfo.getFans()));
     }
 
     private void requestData(boolean refresh) {
@@ -311,18 +304,15 @@ public class MyInformationFragment extends BaseFragment {
     }
 
     private void sendRequestData() {
-//        int uid = AppContext.getInstance().getLoginUid();
-     String usrName = AppContext.getInstance().getmUserName();
-     String password = AppContext.getInstance().getmPassword();
-     
-        OSChinaApi.loginRequest(usrName, password, mHandler);
+        int uid = AppContext.getInstance().getLoginUid();
+        OSChinaApi.getMyInformation(uid, mHandler);
     }
 
     private String getCacheKey() {
-        return "my_information" + AppContext.getInstance().getmUid();
+        return "my_information" + AppContext.getInstance().getLoginUid();
     }
 
-    private class CacheTask extends AsyncTask<String, Void, GetUserInfoResp> {
+    private class CacheTask extends AsyncTask<String, Void, User> {
         private final WeakReference<Context> mContext;
 
         private CacheTask(Context context) {
@@ -330,18 +320,18 @@ public class MyInformationFragment extends BaseFragment {
         }
 
         @Override
-        protected GetUserInfoResp doInBackground(String... params) {
+        protected User doInBackground(String... params) {
             Serializable seri = CacheManager.readObject(mContext.get(),
                     params[0]);
             if (seri == null) {
                 return null;
             } else {
-                return (GetUserInfoResp) seri;
+                return (User) seri;
             }
         }
 
         @Override
-        protected void onPostExecute(GetUserInfoResp info) {
+        protected void onPostExecute(User info) {
             super.onPostExecute(info);
             if (info != null) {
                 mInfo = info;

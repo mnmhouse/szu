@@ -37,6 +37,8 @@ import cn.szu.edu.app.util.XmlUtils;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.networkbench.com.google.gson.Gson;
+import com.szu.edu.model.GetUserInfoResp;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
@@ -141,10 +143,12 @@ public class LoginActivity extends BaseActivity {
 
         mUserName = mEtUserName.getText().toString();
         mPassword = mEtPassword.getText().toString();
-
+        mUserName = "admin";
+        mPassword = "21513141314";
         showWaitDialog(R.string.progress_login);
-        OSChinaApi.login(mUserName, mPassword, mHandler);
-//        OSChinaApi.loginRequest(mUserName, mPassword, mHandler);
+//        OSChinaApi.login(mUserName, mPassword, mHandler);
+        
+        OSChinaApi.loginRequest("admin", "21513141314", mHandler);
     }
 
     private final AsyncHttpResponseHandler mHandler = new AsyncHttpResponseHandler() {
@@ -154,6 +158,8 @@ public class LoginActivity extends BaseActivity {
         public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
             try {
             	Log.i("good", new String(arg2, "UTF-8"));
+            	String result = new String(arg2,"UTF-8");
+            
                 AsyncHttpClient client = ApiHttpClient.getHttpClient();
                 HttpContext httpContext = client.getHttpContext();
                 CookieStore cookies = (CookieStore) httpContext
@@ -172,21 +178,23 @@ public class LoginActivity extends BaseActivity {
                             .getInstance()));
                     HttpConfig.sCookie = tmpcookies;
                 }
-                LoginUserBean user = XmlUtils.toBean(LoginUserBean.class,
-                        new ByteArrayInputStream(arg2));
-                Result res = user.getResult();
-                if (res.OK()) {
+                
+            	Gson mGson = new Gson();
+            	GetUserInfoResp user =mGson.fromJson(result, GetUserInfoResp.class);
+               
+                String res = user.getReturnCode();
+                if (res==null) {
                     // 保存登录信息
-                    user.getUser().setAccount(mUserName);
-                    user.getUser().setPwd(mPassword);
-                    user.getUser().setRememberMe(true);
-                    AppContext.getInstance().saveUserInfo(user.getUser());
+                    user.setAccount(mUserName);
+                    user.setPwd(mPassword);
+                    user.setRememberMe(true);
+                    AppContext.getInstance().saveUserInfos(user);
                     hideWaitDialog();
                     handleLoginSuccess();
                 } else {
                     AppContext.getInstance().cleanLoginInfo();
                     hideWaitDialog();
-                    AppContext.showToast(res.getErrorMessage());
+                    AppContext.showToast(user.getReturnMsg());
                 }
             } catch (Exception e) {
                 e.printStackTrace();

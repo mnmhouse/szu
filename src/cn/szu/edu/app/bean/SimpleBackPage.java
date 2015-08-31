@@ -10,6 +10,7 @@ import cn.szu.edu.app.fragment.EventFragment;
 import cn.szu.edu.app.fragment.FeedBackFragment;
 import cn.szu.edu.app.fragment.FindUserFragment;
 import cn.szu.edu.app.fragment.MessageDetailFragment;
+import cn.szu.edu.app.fragment.MyInfoFragmentDetail;
 import cn.szu.edu.app.fragment.MyInformationFragment;
 import cn.szu.edu.app.fragment.MyInformationFragmentDetail;
 import cn.szu.edu.app.fragment.QuestionTagFragment;
@@ -116,9 +117,10 @@ public enum SimpleBackPage {
 
     DYNAMIC(29, R.string.team_dynamic, TeamActiveFragment.class),
 
-    MY_INFORMATION_DETAIL(30, R.string.actionbar_title_my_information,
-            MyInformationFragmentDetail.class),
-
+//    MY_INFORMATION_DETAIL(30, R.string.actionbar_title_my_information,
+//            MyInformationFragmentDetail.class),
+  MY_INFORMATION_DETAIL(30, R.string.actionbar_title_my_information,
+  MyInfoFragmentDetail.class),
     FEED_BACK(31, R.string.str_feedback_title, FeedBackFragment.class),
 
     TEAM_USER_INFO(32, R.string.str_team_userinfo,

@@ -1,6 +1,7 @@
 package cn.szu.edu.app.ui;
 
 import cn.szu.edu.app.R;
+import cn.szu.edu.app.fragment.MyInfoFragment;
 import cn.szu.edu.app.fragment.MyInformationFragment;
 import cn.szu.edu.app.fragment.PictureListFragment;
 import cn.szu.edu.app.fragment.TopNewsFragment;
@@ -22,8 +23,10 @@ public enum MainTab {
 	NEWS(3, R.string.main_tab_name_explore, R.drawable.tab_icon_explore,
 			CollegeNoticeViewPagerFragment.class),
 
+//	ME(4, R.string.main_tab_name_my, R.drawable.tab_icon_me,
+//			MyInformationFragment.class);
 	ME(4, R.string.main_tab_name_my, R.drawable.tab_icon_me,
-			MyInformationFragment.class);
+			MyInfoFragment.class);
 
 	private int idx;
 	private int resName;
