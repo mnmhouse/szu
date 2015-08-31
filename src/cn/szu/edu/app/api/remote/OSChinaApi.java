@@ -56,22 +56,19 @@ public class OSChinaApi {
 
     public static void loginRequest(String username, String password,
             AsyncHttpResponseHandler handler) {
-//        RequestParams params = new RequestParams();
+
         JSONObject params  = new JSONObject();
-        
         try {
-		params.put("username", "test");
-        params.put("passwd", "21513141314");
+		params.put("username", username);
+        params.put("passwd", password);
         params.put("client", "1");
         params.put("machineId",  Secure.getString(AppContext.getInstance().getContentResolver(), Secure.ANDROID_ID));
         } catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        URL_BASE +=  Uri.encode(params.toString());
-	
+   
         Log.i("send data", URL_BASE.toString());
-        ApiHttpClient.client.get(URL_BASE, handler);
+        ApiHttpClient.client.get(URL_BASE+ Uri.encode(params.toString()), handler);
 
     }
     
