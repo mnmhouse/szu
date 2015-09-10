@@ -373,6 +373,7 @@ public class MyInfoFragment extends BaseFragment {
         }
         final int id = v.getId();
         switch (id) {
+//        进入我的资料
         case R.id.iv_avatar:
             UIHelper.showSimpleBack(getActivity(),
                     SimpleBackPage.MY_INFORMATION_DETAIL);

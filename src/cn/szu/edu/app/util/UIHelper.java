@@ -808,8 +808,10 @@ public class UIHelper {
         if (StringUtils.isEmpty(avatarUrl)) {
             return;
         }
-        String url = AvatarView.getLargeAvatar(avatarUrl);
-        ImagePreviewActivity.showImagePrivew(context, 0, new String[] { url });
+//        http://qingqula.com/wp-content/uploads/2015/05/xlarge_wegB_91ab000056191e7f.jpg
+//        String url = AvatarView.getLargeAvatar(avatarUrl);
+//        ImagePreviewActivity.showImagePrivew(context, 0, new String[] { url });
+        ImagePreviewActivity.showImagePrivew(context, 0, new String[] { avatarUrl });
     }
 
     /**

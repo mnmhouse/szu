@@ -97,6 +97,7 @@ public class AvatarView extends CircleImageView {
     public static String getLargeAvatar(String source) {
         if (source == null)
             return "";
-        return source.replaceAll(AVATAR_SIZE_REG, LARGE_SIZE);
+         String bigSource=source.replaceAll(AVATAR_SIZE_REG, LARGE_SIZE);
+         return bigSource;
     }
 }

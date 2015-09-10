@@ -142,82 +142,6 @@ public class MyInfoFragmentDetail extends BaseFragment {
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-        case R.id.iv_avatar:
-            showClickAvatar();
-            break;
-
-        default:
-            break;
-        }
-    }
-
-    public void showClickAvatar() {
-        if (mUser == null) {
-            AppContext.showToast("");
-            return;
-        }
-        final CommonDialog dialog = DialogHelper
-                .getPinterestDialogCancelable(getActivity());
-        dialog.setTitle("选择操作");
-        dialog.setNegativeButton(R.string.cancle, null);
-        dialog.setItemsWithoutChk(
-                getResources().getStringArray(R.array.avatar_option),
-                new OnItemClickListener() {
-
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view,
-                            int position, long id) {
-                        if (position == 0) {
-                            handleSelectPicture();
-                        } else {
-                            if (mUser == null) {
-                                dialog.dismiss();
-                                return;
-                            }
-                            UIHelper.showUserAvatar(getActivity(),
-                                    mUser.getPortrait());
-                        }
-                        dialog.dismiss();
-                    }
-                });
-        dialog.show();
-    }
-
-    private void handleSelectPicture() {
-        final CommonDialog dialog = DialogHelper
-                .getPinterestDialogCancelable(getActivity());
-        dialog.setTitle(R.string.choose_picture);
-        dialog.setNegativeButton(R.string.cancle, null);
-        dialog.setItemsWithoutChk(
-                getResources().getStringArray(R.array.choose_picture),
-                new OnItemClickListener() {
-
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view,
-                            int position, long id) {
-                        dialog.dismiss();
-                        goToSelectPicture(position);
-                    }
-                });
-        dialog.show();
-    }
-
-    private void goToSelectPicture(int position) {
-        switch (position) {
-        case ACTION_TYPE_ALBUM:
-            startImagePick();
-            break;
-        case ACTION_TYPE_PHOTO:
-            startTakePhoto();
-            break;
-        default:
-            break;
-        }
-    }
-
-    @Override
     public void initView(View view) {
         ButterKnife.inject(this, view);
         mErrorLayout.setOnLayoutClickListener(new View.OnClickListener() {
@@ -251,6 +175,93 @@ public class MyInfoFragmentDetail extends BaseFragment {
         OSChinaApi.loginRequest(AppContext.getInstance().getmUserName(), AppContext.getInstance().getmPassword(), 
                 mHandler);
     }
+    
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+        case R.id.iv_avatar:
+            showClickAvatar();
+            break;
+
+        default:
+            break;
+        }
+    }
+
+    /**
+     * 点击用户图片操作
+     */
+    public void showClickAvatar() {
+        if (mUser == null) {
+            AppContext.showToast("");
+            return;
+        }
+        final CommonDialog dialog = DialogHelper
+                .getPinterestDialogCancelable(getActivity());
+        dialog.setTitle("选择操作");
+        dialog.setNegativeButton(R.string.cancle, null);
+        dialog.setItemsWithoutChk(
+                getResources().getStringArray(R.array.avatar_option),
+                new OnItemClickListener() {
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view,
+                            int position, long id) {
+                        if (position == 0) { //更换头像      
+                                    	
+                            handleSelectPicture();            
+                        } else {   //查看大头像
+                        	
+                            if (mUser == null) {
+                                dialog.dismiss();
+                                return;
+                            }
+                            UIHelper.showUserAvatar(getActivity(),
+                                    mUser.getPortrait());
+                        }
+                        dialog.dismiss();
+                    }
+                });
+        dialog.show();
+    }
+    
+
+   /** 选择图片操作，包括相册和相机 */
+    
+    private void handleSelectPicture() {
+    	
+        final CommonDialog dialog = DialogHelper
+                .getPinterestDialogCancelable(getActivity());
+        dialog.setTitle(R.string.choose_picture);
+        dialog.setNegativeButton(R.string.cancle, null);
+        dialog.setItemsWithoutChk(
+                getResources().getStringArray(R.array.choose_picture),
+                new OnItemClickListener() {
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view,
+                            int position, long id) {
+                        dialog.dismiss();
+                        goToSelectPicture(position);
+                    }
+                });
+        dialog.show();
+    }
+
+    private void goToSelectPicture(int position) {
+        switch (position) {
+        case ACTION_TYPE_ALBUM://相册选择
+            startImagePick();
+            break;
+        case ACTION_TYPE_PHOTO://相机拍摄选择
+            startTakePhoto();
+            break;
+        default:
+            break;
+        }
+    }
+
+
 
     /**
      * 上传新照片
@@ -417,6 +428,7 @@ public class MyInfoFragmentDetail extends BaseFragment {
                 ImageUtils.REQUEST_CODE_GETIMAGE_BYSDCARD);
     }
 
+    
     @Override
     public void onActivityResult(final int requestCode, final int resultCode,
             final Intent imageReturnIntent) {

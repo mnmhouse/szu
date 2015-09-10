@@ -209,7 +209,7 @@ public class AppContext extends BaseApplication {
 		user.setPortrait(getProperty("user.face"));
 		user.setAccount(getProperty("user.account"));
 		user.setProvince(getProperty("user.location"));
-		user.setProvince(getProperty("user.pwd"));
+		user.setPwd(getProperty("user.pwd"));
 
 		user.setFollowersCount(getProperty("user.followers"));
 		user.setFansCoun(getProperty("user.fans"));
